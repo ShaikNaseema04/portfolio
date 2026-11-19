@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="teamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E162D" />
+      <stop offset="100%" stop-color="#060913" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#teamGrad)" rx="16" />
+  <rect x="2" y="2" width="796" height="496" fill="none" stroke="rgba(59, 130, 246, 0.3)" stroke-width="2" rx="14" />
+  <circle cx="400" cy="230" r="140" fill="#3B82F6" opacity="0.06" />
+  
+  <text x="400" y="90" text-anchor="middle" fill="#60A5FA" font-family="system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2">TEAM PRESENTATION &amp; CELEBRATION</text>
+  <text x="400" y="135" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="28" font-weight="800">Team Health Express at IBM Bengaluru</text>
+  <text x="400" y="170" text-anchor="middle" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="16">Presenting Sanjeevani AI at SkillUp Online Hackathon India 2026 Finals</text>
+  
+  <!-- Team illustration symbol -->
+  <g transform="translate(340, 210) scale(1.8)">
+    <circle cx="16" cy="12" r="6" fill="#3B82F6" />
+    <circle cx="36" cy="10" r="7" fill="#8B5CF6" />
+    <circle cx="56" cy="12" r="6" fill="#3B82F6" />
+    <path d="M6 34c0-5.5 4.5-10 10-10h1c2.3 2 5.5 3.2 9 3.2s6.7-1.2 9-3.2h1c5.5 0 10 4.5 10 10" fill="none" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" />
+  </g>
+  
+  <text x="400" y="380" text-anchor="middle" fill="#38BDF8" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Team Health Express</text>
+  <text x="400" y="410" text-anchor="middle" fill="#E2E8F0" font-family="system-ui, sans-serif" font-size="14">Outperformed 4,000+ Teams Across 500+ Engineering Colleges</text>
+  <text x="400" y="450" text-anchor="middle" fill="#64748B" font-family="monospace" font-size="12">October 27, 2026 • IBM EGL, Bengaluru</text>
+</svg>

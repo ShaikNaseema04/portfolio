@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D1326" />
+      <stop offset="100%" stop-color="#060913" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grad)" rx="12" />
+  <rect x="2" y="2" width="596" height="376" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2" rx="10" />
+  
+  <!-- Subtle decorative elements -->
+  <circle cx="540" cy="60" r="100" fill="#3B82F6" opacity="0.05" />
+  <circle cx="60" cy="320" r="80" fill="#8B5CF6" opacity="0.04" />
+  
+  <rect x="24" y="24" width="8" height="332" fill="url(#glow)" rx="4" />
+  
+  <!-- Badge -->
+  <rect x="52" y="32" width="160" height="26" rx="13" fill="rgba(59,130,246,0.15)" stroke="#3B82F6" stroke-opacity="0.3" />
+  <text x="66" y="49" fill="#93C5FD" font-family="system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.5">INDUSTRY INTERNSHIP</text>
+  
+  <!-- Main Title -->
+  <text x="52" y="105" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="20" font-weight="700">Data Analyst Internship Certificate</text>
+  <text x="52" y="132" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="13" font-weight="500">Unified Mentor Pvt. Ltd. • September 2026</text>
+  
+  <!-- Footer Note -->
+  <text x="52" y="345" fill="#64748B" font-family="monospace" font-size="11">Recipient: Shaik Naseema • Verified Credential</text>
+  <text x="410" y="345" fill="#3B82F6" font-family="system-ui, sans-serif" font-size="11">Click to view details ↗</text>
+</svg>

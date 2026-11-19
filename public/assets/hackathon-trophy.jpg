@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="trophyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E162D" />
+      <stop offset="100%" stop-color="#060913" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#trophyGrad)" rx="16" />
+  <rect x="2" y="2" width="796" height="496" fill="none" stroke="rgba(245, 158, 11, 0.3)" stroke-width="2" rx="14" />
+  <circle cx="400" cy="210" r="130" fill="#F59E0B" opacity="0.08" />
+  
+  <text x="400" y="80" text-anchor="middle" fill="#F59E0B" font-family="system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2">NATIONAL CHAMPION • FIRST PLACE</text>
+  <text x="400" y="125" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="28" font-weight="800">SkillUp Online Hackathon India 2026</text>
+  <text x="400" y="160" text-anchor="middle" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="16">In Collaboration with IBM SkillsBuild • IBM EGL, Bengaluru</text>
+  
+  <!-- Trophy representation -->
+  <g transform="translate(360, 190) scale(1.6)">
+    <path d="M12 2C7.58 2 4 5.58 4 10c0 3.31 2.01 6.16 4.9 7.37.52.22.85.74.85 1.3V20h5v-1.33c0-.56.33-1.08.85-1.3C18.49 16.16 20.5 13.31 20.5 10c0-4.42-3.58-8-8.5-8z" fill="url(#gold)" />
+    <path d="M7 21h10v3H7z" fill="#D97706" />
+  </g>
+  
+  <text x="400" y="360" text-anchor="middle" fill="#38BDF8" font-family="system-ui, sans-serif" font-size="20" font-weight="700">SANJEEVANI AI</text>
+  <text x="400" y="390" text-anchor="middle" fill="#E2E8F0" font-family="system-ui, sans-serif" font-size="15">TEAM HEALTH EXPRESS • 1st Place National Trophy</text>
+  <text x="400" y="440" text-anchor="middle" fill="#64748B" font-family="monospace" font-size="13">October 27, 2026 • IBM EGL, Bengaluru, India</text>
+</svg>
