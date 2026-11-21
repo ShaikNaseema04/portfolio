@@ -9,18 +9,38 @@ import {
   Database,
   BarChart2,
   CheckCircle2,
-  FileText
+  FileText,
+  AlertCircle
 } from 'lucide-react';
 import { Github, Linkedin } from './SocialIcons';
 import { PERSONAL_INFO, HACKATHON_ACHIEVEMENT } from '../data/portfolioData';
 
 export default function Hero() {
-  const [imgError, setImgError] = useState(false);
   const [downloadFeedback, setDownloadFeedback] = useState(false);
+  const [resumeError, setResumeError] = useState(null);
 
-  const handleResumeDownload = () => {
-    setDownloadFeedback(true);
-    setTimeout(() => setDownloadFeedback(false), 3000);
+  const handleResumeDownload = async (e) => {
+    const resumePath = PERSONAL_INFO.resumePdf || '/assets/Shaik_Naseema_Resume.pdf';
+    setResumeError(null);
+
+    try {
+      const response = await fetch(resumePath, { method: 'HEAD' });
+      const contentType = response.headers.get('content-type') || '';
+      const isRealPdf = response.ok && !contentType.includes('text/html');
+
+      if (!isRealPdf) {
+        e.preventDefault();
+        setResumeError(`Resume file not found at ${resumePath}`);
+        setTimeout(() => setResumeError(null), 5000);
+      } else {
+        setDownloadFeedback(true);
+        setTimeout(() => setDownloadFeedback(false), 3000);
+      }
+    } catch (err) {
+      // In case of network check failure, let native download proceed
+      setDownloadFeedback(true);
+      setTimeout(() => setDownloadFeedback(false), 3000);
+    }
   };
 
   const scrollTo = (href) => {
@@ -111,16 +131,29 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* Resume Toast Confirmation Feedback */}
-            {downloadFeedback && (
+            {/* Resume Error Notification */}
+            {resumeError && (
               <motion.div
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-3.5 py-2 rounded-lg mb-6"
+                className="flex items-center gap-2 text-xs font-mono text-amber-300 bg-amber-950/60 border border-amber-500/40 px-3.5 py-2 rounded-lg mb-6 shadow-lg"
               >
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Resume download initiated. (Check public/assets/Shaik_Naseema_Resume.pdf)</span>
+                <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>{resumeError}</span>
+              </motion.div>
+            )}
+
+            {/* Resume Toast Confirmation Feedback */}
+            {downloadFeedback && !resumeError && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-3.5 py-2 rounded-lg mb-6 shadow-lg"
+              >
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Resume download initiated (Shaik_Naseema_Resume.pdf)</span>
               </motion.div>
             )}
 
@@ -146,9 +179,10 @@ export default function Hero() {
                   <Linkedin className="w-4 h-4" />
                 </a>
                 <a
-                  href={`mailto:${PERSONAL_INFO.email}`}
+                  href="mailto:naseema04122005@gmail.com?subject=Message%20for%20Shaik%20Naseema"
+                  title="Email: naseema04122005@gmail.com"
+                  aria-label="Send Email to Shaik Naseema"
                   className="p-2.5 rounded-xl bg-[#0D1326] border border-white/10 text-slate-400 hover:text-white hover:border-blue-500/40 hover:bg-blue-600/10 transition-all duration-200 shadow-sm"
-                  aria-label="Email Shaik Naseema"
                 >
                   <Mail className="w-4 h-4" />
                 </a>
@@ -180,33 +214,15 @@ export default function Hero() {
             <div className="relative w-full max-w-[380px] sm:max-w-[420px] rounded-3xl p-2 bg-gradient-to-b from-white/15 via-white/5 to-white/5 border border-white/15 shadow-2xl backdrop-blur-xl">
               
               {/* Inner Frame */}
-              <div className="relative overflow-hidden rounded-[20px] bg-[#0A0F21] aspect-[4/5] flex items-center justify-center">
+              <div className="relative overflow-hidden rounded-[20px] bg-[#0A0F21] aspect-[4/5] flex items-center justify-center border border-blue-500/30 ring-1 ring-blue-500/20 shadow-inner">
                 
-                {/* Fallback & Portrait View */}
-                {!imgError ? (
-                  <img
-                    src={PERSONAL_INFO.profileImage}
-                    alt="Shaik Naseema – Aspiring Data Analyst"
-                    className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
-                    onError={() => setImgError(true)}
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-[#0F172E] to-[#060913]">
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-blue-600 to-violet-600 p-[2px] mb-4 shadow-xl shadow-blue-500/20">
-                      <div className="w-full h-full rounded-full bg-[#080D1D] flex items-center justify-center">
-                        <span className="font-mono text-3xl font-extrabold text-blue-400">SN</span>
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-1">Shaik Naseema</h3>
-                    <p className="text-xs text-blue-400 font-mono mb-2">Aspiring Data Analyst</p>
-                    <p className="text-xs text-slate-400 max-w-xs mb-4">
-                      Drop your official photo as <code className="text-blue-300">public/assets/profile.jpg</code> to display here.
-                    </p>
-                    <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[11px] font-mono">
-                      CGPA: 8.5 • B.Tech CSE
-                    </span>
-                  </div>
-                )}
+                {/* Official Portrait Photo */}
+                <img
+                  src={PERSONAL_INFO.profileImage || "/assets/profile.jpg"}
+                  alt="Shaik Naseema – Aspiring Data Analyst"
+                  className="w-full h-full object-cover object-top rounded-[19px] transition-transform duration-500 hover:scale-105"
+                  loading="eager"
+                />
 
                 {/* Subtle gradient vignette at bottom */}
                 <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#060913]/90 via-[#060913]/40 to-transparent pointer-events-none" />

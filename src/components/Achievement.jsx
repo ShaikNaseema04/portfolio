@@ -168,7 +168,7 @@ export default function Achievement() {
                 <span className="text-xs text-slate-400 font-mono">Interactive Lightbox</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {HACKATHON_ACHIEVEMENT.photos.map((photo, index) => (
                   <div
                     key={index}
@@ -179,7 +179,7 @@ export default function Achievement() {
                       <img
                         src={photo.src}
                         alt={photo.alt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
 
@@ -191,7 +191,7 @@ export default function Achievement() {
                             {photo.title}
                           </div>
                           <div className="text-[11px] text-slate-300 font-mono mt-0.5">
-                            {photo.caption}
+                            {photo.description || photo.caption}
                           </div>
                         </div>
                         <div className="p-1.5 rounded-lg bg-white/10 group-hover:bg-amber-500/20 text-slate-300 group-hover:text-amber-300 transition-colors">
@@ -215,7 +215,8 @@ export default function Achievement() {
           onClose={() => setSelectedPhoto(null)}
           image={selectedPhoto.src}
           title={selectedPhoto.title}
-          caption={selectedPhoto.caption}
+          caption={selectedPhoto.description || selectedPhoto.caption}
+          alt={selectedPhoto.alt}
         />
       )}
     </section>

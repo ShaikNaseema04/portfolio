@@ -203,7 +203,7 @@ export default function Skills() {
                 <span className="flex items-center gap-1.5">
                   <Terminal className="w-3.5 h-3.5 text-emerald-400" /> Environment &amp; VCS
                 </span>
-                <span>Git • GitHub • Jupyter</span>
+                <span>Git • GitHub • VS Code • Jupyter</span>
               </div>
             </motion.div>
 

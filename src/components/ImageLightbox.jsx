@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn, ExternalLink, Calendar, MapPin, Users, Award } from 'lucide-react';
 
-export default function ImageLightbox({ isOpen, onClose, image, title, caption, eventDetails }) {
+export default function ImageLightbox({ isOpen, onClose, image, title, caption, alt, eventDetails }) {
   // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {

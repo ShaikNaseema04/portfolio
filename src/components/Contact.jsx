@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Mail,
-  Phone,
   MapPin,
   Send,
   Copy,
@@ -14,15 +13,15 @@ import {
   Sparkles,
   ArrowRight
 } from 'lucide-react';
+import { Linkedin } from './SocialIcons';
 import confetti from 'canvas-confetti';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 // ============================================================================
 // WEB3FORMS CONFIGURATION
-// To receive emails directly to your inbox, obtain a free access key from
-// https://web3forms.com/ and replace YOUR_WEB3FORMS_ACCESS_KEY below:
+// Configured to deliver inquiries directly to naseema04122005@gmail.com
 // ============================================================================
-export const YOUR_WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+export const YOUR_WEB3FORMS_ACCESS_KEY = "d92c8170-ef95-4903-a868-612114d8286c";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -58,23 +57,6 @@ export default function Contact() {
     setStatus('loading');
     setStatusMessage('Transmitting message...');
 
-    // If Web3Forms key has not been replaced yet, simulate graceful success and show setup instructions
-    if (YOUR_WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-      setTimeout(() => {
-        setStatus('success');
-        setStatusMessage(
-          'Thank you! Your message was received in demo mode. (To deliver to your email, add your Web3Forms access key in Contact.jsx)'
-        );
-        confetti({
-          particleCount: 60,
-          spread: 60,
-          origin: { y: 0.7 }
-        });
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      }, 900);
-      return;
-    }
-
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -84,8 +66,11 @@ export default function Contact() {
         },
         body: JSON.stringify({
           access_key: YOUR_WEB3FORMS_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject.trim() || 'New Portfolio Inquiry - Shaik Naseema',
+          message: formData.message,
           from_name: 'Shaik Naseema Portfolio',
-          ...formData,
         }),
       });
 
@@ -93,7 +78,7 @@ export default function Contact() {
 
       if (result.success) {
         setStatus('success');
-        setStatusMessage('Your message has been sent successfully! I will respond promptly.');
+        setStatusMessage('Thank you! Your message has been sent directly to Shaik Naseema.');
         confetti({
           particleCount: 75,
           spread: 70,
@@ -102,11 +87,11 @@ export default function Contact() {
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         setStatus('error');
-        setStatusMessage(result.message || 'Something went wrong. Please try again or reach out via email.');
+        setStatusMessage(result.message || 'Something went wrong. Please try again or reach out directly via email.');
       }
     } catch (error) {
       setStatus('error');
-      setStatusMessage('Network error occurred. Please email directly at naseema04122005@gmail.com.');
+      setStatusMessage('Network error occurred. Please check your connection or email directly at naseema04122005@gmail.com.');
     }
   };
 
@@ -176,19 +161,22 @@ export default function Contact() {
               )}
             </div>
 
-            {/* Phone Card */}
+            {/* LinkedIn Profile Card */}
             <div className="p-6 rounded-2xl bg-[#0D1326] border border-white/10 hover:border-indigo-500/30 transition-all shadow-xl group">
               <div className="flex items-center gap-3.5">
                 <div className="w-12 h-12 rounded-xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-                  <Phone className="w-5 h-5" />
+                  <Linkedin className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-mono uppercase text-slate-400">Direct Telephone</div>
+                  <div className="text-xs font-mono uppercase text-slate-400">LinkedIn Profile</div>
                   <a
-                    href={`tel:${PERSONAL_INFO.phone}`}
-                    className="text-sm font-semibold text-white hover:text-indigo-400 transition-colors font-mono"
+                    href={PERSONAL_INFO.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-white hover:text-indigo-400 transition-colors flex items-center gap-1.5"
                   >
-                    {PERSONAL_INFO.phoneDisplay}
+                    <span>Connect on LinkedIn</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-400 transition-colors" />
                   </a>
                 </div>
               </div>
@@ -215,7 +203,7 @@ export default function Contact() {
                 <Sparkles className="w-3.5 h-3.5 text-blue-400" />
                 <span>Response Time Guarantee</span>
               </div>
-              I typically respond to inquiries within 24 hours. For urgent opportunities, please reach out directly via telephone or LinkedIn.
+              I typically respond to inquiries within 24 hours. For urgent opportunities, please reach out directly via email or LinkedIn.
             </div>
 
           </div>
